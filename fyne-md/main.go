@@ -40,7 +40,6 @@ func main() {
 	win.Resize(fyne.Size{Width: 800, Height: 800})
 	win.CenterOnScreen()
 	win.ShowAndRun()
-
 }
 
 func (app *config) makeUI() (*widget.Entry, *widget.RichText) {
