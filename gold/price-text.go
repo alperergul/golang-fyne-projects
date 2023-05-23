@@ -1,0 +1,46 @@
+package main
+
+import (
+	"fmt"
+	"image/color"
+
+	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/canvas"
+)
+
+func (app *Config) getPriceText() (*canvas.Text, *canvas.Text, *canvas.Text) {
+
+	var g Gold
+	var open, current, change *canvas.Text
+	g.Client = app.HTTPClient
+
+	gold, err := g.GetPrices()
+
+	if err != nil {
+		grey := color.NRGBA{R: 155, G: 155, B: 155, A: 255}
+		open = canvas.NewText("Open: Unreachable", grey)
+		current = canvas.NewText("Current: Unreachable", grey)
+		change = canvas.NewText("Change: Unreachable", grey)
+	} else {
+		displaycolor := color.NRGBA{R: 0, G: 180, B: 0, A: 255}
+
+		if gold.Price < gold.PreviousClose {
+			displaycolor = color.NRGBA{R: 180, G: 0, B: 0, A: 255}
+		}
+
+		openTxt := fmt.Sprintf("Open: $%.4f %s", gold.PreviousClose, currency)
+		currentTxt := fmt.Sprintf("Current: $%.4f %s", gold.Price, currency)
+		changeTxt := fmt.Sprintf("Change: $%.4f %s", gold.Change, currency)
+
+		open = canvas.NewText(openTxt, nil)
+		current = canvas.NewText(currentTxt, displaycolor)
+		change = canvas.NewText(changeTxt, displaycolor)
+	}
+
+	open.Alignment = fyne.TextAlignLeading
+	current.Alignment = fyne.TextAlignCenter
+	change.Alignment = fyne.TextAlignTrailing
+
+	return open, current, change
+
+}

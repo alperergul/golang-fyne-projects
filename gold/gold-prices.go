@@ -17,7 +17,7 @@ type Gold struct {
 }
 
 type Price struct {
-	Currency      string    `json:"curr"`
+	Currency      string    `json:"currency"`
 	Price         float64   `json:"xauPrice"`
 	Change        float64   `json:"chgXau"`
 	PreviousClose float64   `json:"xauClose"`
@@ -32,7 +32,7 @@ func (g *Gold) GetPrices() (*Price, error) {
 
 	client := g.Client
 
-	url := fmt.Sprintf("https://data-asg.goldprice.org/dbXRates/USD/%s", currency)
+	url := fmt.Sprintf("https://data-asg.goldprice.org/dbXRates/%s", currency)
 
 	req, _ := http.NewRequest("GET", url, nil)
 

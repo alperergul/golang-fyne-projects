@@ -2,7 +2,10 @@ module goldwatcher
 
 go 1.20
 
-require fyne.io/fyne/v2 v2.3.4
+require (
+	fyne.io/fyne v1.4.3
+	fyne.io/fyne/v2 v2.3.4
+)
 
 require (
 	fyne.io/systray v1.10.1-0.20230403195833-7dc3c09283d6 // indirect
