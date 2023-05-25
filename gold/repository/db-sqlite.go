@@ -18,10 +18,10 @@ func NewSQLiteRepository(db *sql.DB) *SQLiteRepository {
 
 func (repo *SQLiteRepository) Migrate() error {
 	query := `
-	create table if not exist holdings(
+	create table if not exists holdings(
 		id integer primary key autoincrement,
 		amount real not null,
-		purchase_date integer not null
+		purchase_date integer not null,
 		purchase_price integer not null);
 	`
 

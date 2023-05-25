@@ -28,7 +28,7 @@ func (app *Config) makeUI() {
 
 	tabs := container.NewAppTabs(
 		container.NewTabItemWithIcon("Prices", theme.HomeIcon(), priceTabContent),
-		container.NewTabItemWithIcon("Holdings", theme.HomeIcon(), canvas.NewText("Holdings content goes to here", nil)),
+		container.NewTabItemWithIcon("Holdings", theme.InfoIcon(), canvas.NewText("Holdings content goes to here", nil)),
 	)
 	tabs.SetTabLocation(container.TabLocationTop)
 
